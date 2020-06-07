@@ -41,11 +41,11 @@ class QBrain{
   }
   String getText()
   {
-    return _qBank[_qNum].ques;
+    return _qBank[_qNum].q;
   }
 
   bool getAns(){
-    return _qBank[_qNum].ans;
+    return _qBank[_qNum].a;
   }
 
   void reset(){
