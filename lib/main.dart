@@ -32,7 +32,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> score = [];
+  List<Widget> score = [];
 
   void check(bool user) {
     bool correct = qBrain.getAns();
@@ -73,6 +73,16 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+    void adjustBottomRowHeight() {
+      score.add(
+        SizedBox(
+          height: MediaQuery.of(context).size.width * 0.07,
+        ),
+      );
+    }
+
+    adjustBottomRowHeight();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
