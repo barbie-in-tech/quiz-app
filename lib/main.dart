@@ -33,6 +33,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> score = [];
+  bool checker = true;
 
   void check(bool user) {
     bool correct = qBrain.getAns();
@@ -46,6 +47,7 @@ class _QuizPageState extends State<QuizPage> {
               .show();
           qBrain.reset();
           score = [];
+          checker = true;
         } else {
           if (user == correct) {
             score.add(
@@ -82,6 +84,11 @@ class _QuizPageState extends State<QuizPage> {
     }
 
     adjustBottomRowHeight();
+
+    if (checker) {
+      qBrain.shuffleQuestions();
+      checker = false;
+    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
