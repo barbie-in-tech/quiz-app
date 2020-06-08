@@ -36,32 +36,39 @@ class _QuizPageState extends State<QuizPage> {
 
   void check(bool user) {
     bool correct = qBrain.getAns();
-    setState(() {
-
-      if (qBrain.finished() == true) {
-        Alert(context: context, title: 'FINISHED!', desc: 'You have finished the quiz.')
-            .show();
-        qBrain.reset();
-        score = [];
-      }
-      else {
-
-        if (user == correct) {
-          score.add(Icon(
-            Icons.check,
-            color: Colors.green,
-          ));
+    setState(
+      () {
+        if (qBrain.finished() == true) {
+          Alert(
+                  context: context,
+                  title: 'FINISHED!',
+                  desc: 'You have finished the quiz.')
+              .show();
+          qBrain.reset();
+          score = [];
         } else {
-          score.add(Icon(
-            Icons.close,
-            color: Colors.red,
-          ));
+          if (user == correct) {
+            score.add(
+              Icon(
+                Icons.check,
+                color: Colors.green,
+                size: MediaQuery.of(context).size.width * 0.07,
+              ),
+            );
+          } else {
+            score.add(
+              Icon(
+                Icons.close,
+                color: Colors.red,
+                size: MediaQuery.of(context).size.width * 0.07,
+              ),
+            );
+          }
+
+          qBrain.next();
         }
-
-        qBrain.next();
-
-      }
-    });
+      },
+    );
   }
 
   @override
