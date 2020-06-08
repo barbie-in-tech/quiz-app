@@ -34,20 +34,30 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Widget> score = [];
   bool checker = true;
+  int correctAns = 0;
+  int totalQues = 0;
 
   void check(bool user) {
     bool correct = qBrain.getAns();
     setState(
       () {
         if (qBrain.finished() == true) {
+          correctAns += user == correct ? 1 : 0;
+          totalQues += 1;
           Alert(
+            style: AlertStyle(
+              constraints: BoxConstraints(
+                minWidth: MediaQuery.of(context).size.width * 0.9,
+                maxWidth: MediaQuery.of(context).size.width * 0.9,
+              ),
+            ),
             context: context,
             title: 'FINISHED!',
-            desc: 'You have finished the quiz.',
+            desc: 'You scored $correctAns/$totalQues',
             buttons: [
               DialogButton(
                 child: Text(
-                  'DONE!',
+                  'DONE',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -59,10 +69,14 @@ class _QuizPageState extends State<QuizPage> {
             ],
           ).show();
           qBrain.reset();
+          correctAns = 0;
+          totalQues = 0;
           score = [];
           checker = true;
         } else {
           if (user == correct) {
+            totalQues++;
+            correctAns++;
             score.add(
               Icon(
                 Icons.check,
@@ -71,6 +85,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
             );
           } else {
+            totalQues++;
             score.add(
               Icon(
                 Icons.close,
