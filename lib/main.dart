@@ -45,17 +45,12 @@ class _QuizPageState extends State<QuizPage> {
           correctAns += user == correct ? 1 : 0;
           totalQues += 1;
           Alert(
-            style: AlertStyle(
-              constraints: BoxConstraints(
-                minWidth: MediaQuery.of(context).size.width * 0.9,
-                maxWidth: MediaQuery.of(context).size.width * 0.9,
-              ),
-            ),
             context: context,
             title: 'FINISHED!',
             desc: 'You scored $correctAns/$totalQues',
             buttons: [
               DialogButton(
+                width: MediaQuery.of(context).size.width * 0.55,
                 child: Text(
                   'DONE',
                   style: TextStyle(
