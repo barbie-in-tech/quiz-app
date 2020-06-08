@@ -41,10 +41,23 @@ class _QuizPageState extends State<QuizPage> {
       () {
         if (qBrain.finished() == true) {
           Alert(
-                  context: context,
-                  title: 'FINISHED!',
-                  desc: 'You have finished the quiz.')
-              .show();
+            context: context,
+            title: 'FINISHED!',
+            desc: 'You have finished the quiz.',
+            buttons: [
+              DialogButton(
+                child: Text(
+                  'DONE!',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ).show();
           qBrain.reset();
           score = [];
           checker = true;
