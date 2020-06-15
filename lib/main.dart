@@ -35,7 +35,7 @@ class _QuizPageState extends State<QuizPage> {
   List<Widget> score = [];
   bool checker = true;
   int correctAns = 0;
-  int totalQues = 0;
+  int totalQues = 10;
   bool abc = true;
 
   int _qNum = 0;
@@ -47,15 +47,15 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   bool finished() {
-    if (_qNum >= _qBank.length - 1) {
+    if (_qNum >= 9) {
       return true;
     } else {
       return false;
     }
   }
-
+// _qBank.length - 1
   void next() {
-    if (_qNum < _qBank.length - 1) {
+    if (_qNum < 9) {
       _qNum++;
     } else {
       finished();
@@ -80,7 +80,7 @@ class _QuizPageState extends State<QuizPage> {
       () {
         if (finished() == true) {
           correctAns += user == correct ? 1 : 0;
-          totalQues += 1;
+          //totalQues += 1;
           Alert(
             context: context,
             title: 'FINISHED!',
@@ -107,7 +107,7 @@ class _QuizPageState extends State<QuizPage> {
           checker = true;
         } else {
           if (user == correct) {
-            totalQues++;
+            //totalQues++;
             correctAns++;
             score.add(
               Icon(
@@ -117,7 +117,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
             );
           } else {
-            totalQues++;
+           // totalQues++;
             score.add(
               Icon(
                 Icons.close,
